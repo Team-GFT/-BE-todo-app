@@ -1,18 +1,20 @@
 package api.todoapp.controller
 
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import api.todoapp.domain.Todo
+import api.todoapp.service.TodoService
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("api/todos")
-class TodoController {
+class TodoController(private val todoService: TodoService) {
     @GetMapping()
-    fun getTodos(): String {
-        return "to do list"
+    fun getTodos(): List<Todo> {
+        return todoService.getTodos()
+    }
+
+    @GetMapping("{todoId}")
+    fun getTodo(@PathVariable todoId: Long): Todo {
+        return todoService.getTodo(todoId)
     }
 
     @PostMapping()

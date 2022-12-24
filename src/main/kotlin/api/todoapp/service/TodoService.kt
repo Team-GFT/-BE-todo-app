@@ -10,11 +10,12 @@ class TodoService(private val todoRepository: TodoRepository) {
         return todoRepository.save(todo)
     }
 
-    fun getTodo(todoId: Long): Todo? {
+    // TODO 값이 없을 경우 어떻게 메시지 내려줄지 고민...
+    fun getTodo(todoId: Long): Todo {
         return todoRepository.findById(todoId)
     }
 
-    fun getTodos(): List<Todo>? {
-        return todoRepository.findAll()
+    fun getTodos(): List<Todo> {
+        return todoRepository.findAll() ?: listOf()
     }
 }
