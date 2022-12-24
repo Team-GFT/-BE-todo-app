@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest
 @Transactional
-// 매 테스트마다 row 생성 -> 삭제 -> 테스트 순으로 이뤄지는 방법 찾기...
 class TodoServiceTest (@Autowired private val todoService: TodoService) {
     @Test
     fun `Todo가 생성된다`() {
